@@ -7,10 +7,10 @@ import random
 class ltm:
     def __init__(self):
         self.dir_name = "input"
-        self.file_name = "11.txt"
-        self.totalNum = 34
-        #self.NODE_THRESHOLD = 12
-        self.GreedyNum=15
+        self.file_name = "11.txt"             # data set      
+        self.totalNum = 34                    #data set number
+      
+        self.GreedyNum=15                     #|S|
 
         self.nodesheld={}
 
@@ -21,8 +21,8 @@ class ltm:
         self.node_list = {}
         self.total_activated_nodes_set = set()
         self.activated_node_set=[]
-        self.top_nodes_with_activation_count = collections.OrderedDict()  # Final data structure which hold the results
-
+        self.top_nodes_with_activation_count = collections.OrderedDict()
+        
     def run_main(self):
         self.open_file()
         self.load_graph()
@@ -40,7 +40,7 @@ class ltm:
     def close_file(self):
         self.fd.close()
 
-    def pre_processing(self):
+    def pre_processing(self):                   #read threshold
         for node in self.nodes_list:
             if not node:
                 continue
@@ -60,7 +60,7 @@ class ltm:
 
 
 
-    def Greedy(self):
+    def Greedy(self):                   #greedy algorithm
         greedy_node_set = []
 
         max = 1
@@ -96,7 +96,7 @@ class ltm:
 
 
 
-    def activated_count(self):
+    def activated_count(self):              #Calculate activate node count
         tmp = 0
         self.activated_node_neighbour = []
         length = len(self.activated_node_set)
@@ -121,7 +121,7 @@ class ltm:
 
 
 
-    def check_if_is_activated(self, node):
+    def check_if_is_activated(self, node):   #check a node if is activated
         total_edge_weight = 0
         total_edge = 0;
         incoming_edge_list = self.node_to_incoming_edge_dict.get(node)
