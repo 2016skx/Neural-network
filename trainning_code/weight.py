@@ -1,15 +1,15 @@
 import tensorflow as tf
 
-totalnum=34
-greedNum=15
-reader = tf.train.NewCheckpointReader("save/tensor_net.ckpt")
-W1 = reader.get_tensor("weight0")
+totalnum=34             #data set num
+greedNum=15                #|S|
+reader = tf.train.NewCheckpointReader("save/tensor_net.ckpt")    #read model
+W1 = reader.get_tensor("weight0")  #read weight (between input layer and hidden layer) 
 output = []
 sortoutput=[]
-nrow = len(W1)
-ncol = len(W1[0])
-for i in range(nrow):
-    sortoutput.append(sum([abs(W1[i][x]) for x in range(ncol)]))
+nrow = len(W1)              #row num    
+ncol = len(W1[0])           #column num
+for i in range(nrow):                                                   
+    sortoutput.append(sum([abs(W1[i][x]) for x in range(ncol)]))            
 for ab in range(nrow):
     output.append(sum([abs(W1[ab][x]) for x in range(ncol)]))
 
