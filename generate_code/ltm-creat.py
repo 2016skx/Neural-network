@@ -9,7 +9,7 @@ class ltm:
         self.dir_name = "input"
         self.file_name = "11.txt"  #data set/social network
         self.totalNum = 34         #node num
-        self.trainNum = 10000     #training set num
+        self.trainNum = 10000     #training sample num
         self.nodesheld = {}
 
         self.edge_to_weight_dict = {}
@@ -18,7 +18,7 @@ class ltm:
         self.node_to_activated_nodes_set_dict = {}
         self.node_list = {}
         self.total_activated_nodes_set = set()
-        self.top_nodes_with_activation_count = collections.OrderedDict()  # Final data structure which hold the results
+        self.top_nodes_with_activation_count = collections.OrderedDict()  
 
     def run_main(self):
         self.open_file()
@@ -47,7 +47,7 @@ class ltm:
             for neighbor in neighbors_list:
                 edge_name = node + "TO" + neighbor
                 self.node_to_incoming_edge_dict.setdefault(neighbor, []).append(edge_name)
-            for line in open("xxxx",'r',encoding='utf-8'):                 #read threshold
+            for line in open("xxxx.txt",'r',encoding='utf-8'):                                      #read threshold
                 if line.split(" ", 2)[0] == node:
                     nodesheld = line.split(" ", 2)[1].strip()
                     self.nodesheld[node] = nodesheld
@@ -55,10 +55,10 @@ class ltm:
 
     def train(self):
         list1 = []
-        for m in range(0, self.trainNum):
-            trainInput = [0 for x in range(0, self.totalNum)]
+        for m in range(0, self.trainNum):                            #Start generating training sample
+            trainInput = [0 for x in range(0, self.totalNum)]        #Input vector
             self.activated_node_set = []
-            seedsetNum = random.randint(2, self.totalNum/6)
+            seedsetNum = random.randint(2, self.totalNum/6)          #|S|
             print(seedsetNum)
             self.activated_node_neighbour = []
 
@@ -68,7 +68,7 @@ class ltm:
             print(self.activated_node_set)
 
 
-            f2 = open('xxxxxxx', 'a', encoding='utf-8')               #input of training set
+            f2 = open('xxxxxxx.txt', 'a', encoding='utf-8')               #training set input file
             for num in range(len(trainInput)):
                 f2.write(str(trainInput[num]))
                 f2.write(' ')
@@ -101,15 +101,15 @@ class ltm:
             self.node_to_activated_nodes_set_dict = {}
         self.post_processing()
         for i in self.activated_node_set:
-            trainOutput[int(i)-1] = 1
-        f3 = open('xxxxxxxx', 'a', encoding='utf-8')              #output of training set
+            trainOutput[int(i)-1] = 1                                 #this data set start from node 1
+        f3 = open('xxxxxxxx.txt', 'a', encoding='utf-8')              ##training set out file
         for num in range(len(trainOutput)):
             f3.write(str(trainOutput[num]))
             f3.write(' ')
         f3.write('\r')
         f3.close()
 
-    def check_if_is_activated(self, node):
+    def check_if_is_activated(self, node):                              #check a node if is activated
         total_edge_weight = 0
         total_edge = 0;
         incoming_edge_list = self.node_to_incoming_edge_dict.get(node)
