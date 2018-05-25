@@ -7,17 +7,17 @@ import random
 import re
 
 
-totalNum = 34
-GreedyNum = 15
-activated_node_set=[]
+totalNum = 34               #data set num
+GreedyNum = 15                 #|S|
+activated_node_set=[]   
 
 
 with tf.Session() as sess:
-    new_saver = tf.train.import_meta_graph('save/tensor_net.ckpt.meta')
+    new_saver = tf.train.import_meta_graph('save/tensor_net.ckpt.meta')         #read model
     new_saver.restore(sess, "save/tensor_net.ckpt")
     greedy_node_set = []
     max = 1
-    for x in range(GreedyNum):
+    for x in range(GreedyNum):                                #NeuGreedy
         for m in range(1, totalNum + 1):
             if m not in greedy_node_set:
                 greedy_node_set.append(m)
@@ -32,10 +32,10 @@ with tf.Session() as sess:
 
                 graph = tf.get_default_graph()
                 x = graph.get_operation_by_name('x').outputs[0]
-                y = tf.get_collection("answer")[0]
+                y = tf.get_collection("answer")[0]    
                 keep_prob = graph.get_operation_by_name('keep_prob').outputs[0]
                 trainOutput_double.append( sess.run(y, feed_dict={x:[trainInput], keep_prob: 1.0}))
-                trainOutput =trainOutput_double[1]
+                trainOutput =trainOutput_double[1]                 #predit influence
                 templength=0
                 for ab in trainOutput:
                     for abc in ab:
