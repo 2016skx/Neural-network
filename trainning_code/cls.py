@@ -4,18 +4,18 @@ import numpy as np
 import random
 
 
-units =[34,3000,34]
+units =[34,3000,34]  #number of neurons per network
+batch_size = 100      #batch size for training
+iteration = 100      #number of iterations
+tot_num = 3000        #total number of training samples
+learn_rate = 0.01     #learning rate
 
-batch_size = 100
-iteration = 100
-tot_num = 3000
-learn_rate = 0.01
 def get_data():
     train_feature = []
     test_feature = []
     a = 0
     b = 0
-    with open("trainInput_10000_030_2-4.txt", "r") as inputFile:
+    with open("trainInput_10000_030_2-4.txt", "r") as inputFile:     #training set input
         for line in inputFile:  
             a+=1
             data = line.split(" ")
@@ -26,7 +26,7 @@ def get_data():
                 test_feature.append(data[:units[0]])
     train_label = []
     test_label = []
-    with open("trainOotput_10000_030_2-4.txt", "r") as outputFile:
+    with open("trainOotput_10000_030_2-4.txt", "r") as outputFile: #training set output(lable)
         for line in outputFile: 
             b+=1
             data=[]
