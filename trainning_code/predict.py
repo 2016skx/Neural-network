@@ -19,7 +19,7 @@ with tf.Session() as sess:
     greddy_node_set = []
     max = 1
   
-    for x in range(GreddyNum):                                                            #NeuGreedy
+    for x in range(GreedyNum):                                                            #NeuGreedy
         check = 0
         for m in range(1, totalNum+1 ):  # 
             if m not in greddy_node_set:
