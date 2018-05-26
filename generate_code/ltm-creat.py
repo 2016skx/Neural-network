@@ -58,7 +58,7 @@ class ltm:
         for m in range(0, self.trainNum):                            #Start generating training sample
             trainInput = [0 for x in range(0, self.totalNum)]        #Input vector
             self.activated_node_set = []
-            seedsetNum = random.randint(2, self.totalNum/6)          #|S|
+            seedsetNum = random.randint(2, 5)          #|S|=(2,mim(self.totalNum/6,15)
             print(seedsetNum)
             self.activated_node_neighbour = []
 
