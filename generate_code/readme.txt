@@ -1,6 +1,7 @@
 Greedy.py is Classical greedy algorithm use LT model.
-ltm-creat is the code to generate the training set
-creat _sheld is the code that generates a threshold.
+creat _sheld is the code that generates a threshold for each node.
+ltm-creat is the code to generate the training set using LT model
+IC_Generate training set is the code to generate the training set using IC model
 
 
 The version of networkx is 1.11.
